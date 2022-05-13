@@ -1,6 +1,6 @@
 #Type Master
 #Program to help memorize the type chart for Pokemon
-#Created by Pierce Renio and Manuel Morales
+#Created by Pierce Renio
 
 import pygame, random, TypeMatchups, TypeEffectiveness
 from Type import Type
