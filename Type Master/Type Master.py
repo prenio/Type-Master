@@ -1,6 +1,6 @@
 #Type Master
 #Program to help memorize the type chart for Pokemon
-#Created by Pierce Renio
+#Created by Pierce Renio and Manuel Morales
 
 import pygame, random, TypeMatchups, TypeEffectiveness
 from Type import Type
@@ -15,8 +15,6 @@ pygame.init()
 pygame.font.init()
 
 #Setting colors
-
-
 color_white = (255,255,255)
 color_black = (0,0,0)
 color_light = (170,170,170)
@@ -140,8 +138,8 @@ def textCreation():
 
 #Returns text for the results screen
 def typeText(name,dNames,d):
-    effect1 = "f"
-    effect2 = "f" 
+    effect1 = ""
+    effect2 = "" 
 
     if de[0][name] == 0.5:
         effect1 = " is not very effective against "
@@ -159,7 +157,7 @@ def typeText(name,dNames,d):
     elif de[1][name] == 2:
         effect2 =" is super effective against "
     elif de[1][name] == 0:
-        effect1 = " has no effect against "
+        effect2 = " has no effect against "
 
     if d2 == 0:
         return (name +  effect1  + dNames[0])
@@ -315,7 +313,7 @@ while True:
     if results_screen:
         resultText = fontL.render(guess_checker(guess,effectiveness_result), True, color_black, color_white)
         resultRect = text.get_rect()
-        resultRect.center = (width*.35,height*.325)
+        resultRect.center = (width*.35,height*.3)
        
         b1Text = fontS.render(txt1, True, color_black, color_white)
         b1TextRect = text.get_rect()
@@ -332,6 +330,24 @@ while True:
         b4Text = fontS.render(txt4, True, color_black, color_white)
         b4TextRect = text.get_rect()
         b4TextRect.center = (width*.22,height*.7)
+
+
+        b1Number = fontL.render(str(de[0][bNames[0]]) + "       x       " + str(de[1][bNames[0]]) + "     =     " + str(de[0][bNames[0]]*de[1][bNames[0]]), True, color_black, color_white)
+        b1NumberRect = text.get_rect()
+        b1NumberRect.center = (width*.4, height*.44)
+
+        b2Number = fontL.render(str(de[0][bNames[1]]) + "       x       " + str(de[1][bNames[1]]) + "     =     " + str(de[0][bNames[1]]*de[1][bNames[1]]), True, color_black, color_white)
+        b2NumberRect = text.get_rect()
+        b2NumberRect.center = (width*.4, height*.54)
+
+        b3Number = fontL.render(str(de[0][bNames[2]]) + "       x       " + str(de[1][bNames[2]]) + "     =     " + str(de[0][bNames[2]]*de[1][bNames[2]]), True, color_black, color_white)
+        b3NumberRect = text.get_rect()
+        b3NumberRect.center = (width*.4, height*.64)
+
+        b4Number = fontL.render(str(de[0][bNames[3]]) + "       x       " + str(de[1][bNames[3]]) + "     =     " + str(de[0][bNames[3]]*de[1][bNames[3]]), True, color_black, color_white)
+        b4NumberRect = text.get_rect()
+        b4NumberRect.center = (width*.4, height*.74)
+
 
         b1Result = pygame.image.load(TypeEffectiveness.returnImage(typeList[b1].name))
         b1Result = pygame.transform.scale(b1Image, (100,50))
@@ -351,6 +367,10 @@ while True:
         screen.blit(b2Text, b2TextRect)
         screen.blit(b3Text, b3TextRect)
         screen.blit(b4Text, b4TextRect)
+        screen.blit(b1Number,b1NumberRect)
+        screen.blit(b2Number,b2NumberRect)
+        screen.blit(b3Number,b3NumberRect)
+        screen.blit(b4Number,b4NumberRect)
 
         screen.blit(b1Result,(5,height*.35))
         screen.blit(b2Result,(5,height*.45))
@@ -515,6 +535,24 @@ while True:
         screen.blit(streakText,streakRect)
 
     pygame.display.update()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
